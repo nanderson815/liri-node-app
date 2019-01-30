@@ -17,7 +17,7 @@ var bandsKey = keys.bands.key;
 
 // console.log(bandsKey);
 
-// console.log(spotify);
+// console.log(keys.spotify);
 // console.log(omdb);
 
 var command = process.argv[2];
@@ -42,6 +42,21 @@ if (command === "concert-this") {
     } else {
         console.log("Please enter a band name in quotes.");
     }
+}
+
+// Spotify Command 
+if (command === "spotify-this-song"){
+    var track = process.argv[3]
+    spotify.search({
+        type: 'track', 
+        query: track})
+    .then(function(resp){
+        console.log(resp);
+    })
+    .catch(function(err){
+        console.log(err);
+    }) 
+
 }
 
 
