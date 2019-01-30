@@ -47,6 +47,12 @@ if (command === "concert-this") {
 // Spotify Command 
 if (command === "spotify-this-song") {
     var track = process.argv[3]
+
+    if (track === undefined) {
+        track = "The Sign";
+        console.log("No song chosen! Here is info on " + track);
+    }
+
     spotify.search({
         type: 'track',
         query: track
@@ -58,7 +64,7 @@ if (command === "spotify-this-song") {
                 console.log("Artist: " + resp.tracks.items[i].artists[0].name);
                 console.log("Song: " + resp.tracks.items[i].name);
                 console.log("Album: " + resp.tracks.items[i].album.name);
-                console.log("Preview: "+resp.tracks.items[i].preview_url);
+                console.log("Preview: " + resp.tracks.items[i].preview_url);
 
             }
         })
