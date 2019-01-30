@@ -23,7 +23,7 @@ var bandsKey = keys.bands.key;
 var command = process.argv[2];
 
 
-// Bands in Town Command
+// Bands in Town Command ----------------------------------------------------------------------------------------------
 if (command === "concert-this") {
     var band = process.argv[3];
 
@@ -44,7 +44,7 @@ if (command === "concert-this") {
     }
 }
 
-// Spotify Command 
+// Spotify Command ----------------------------------------------------------------------------------------------------
 if (command === "spotify-this-song") {
     var track = process.argv[3]
 
