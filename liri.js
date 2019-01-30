@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 var moment = require('moment');
-moment().format();
+// moment().format();
 
 var axios = require('axios');
 
@@ -45,17 +45,26 @@ if (command === "concert-this") {
 }
 
 // Spotify Command 
-if (command === "spotify-this-song"){
+if (command === "spotify-this-song") {
     var track = process.argv[3]
     spotify.search({
-        type: 'track', 
-        query: track})
-    .then(function(resp){
-        console.log(resp);
+        type: 'track',
+        query: track
     })
-    .catch(function(err){
-        console.log(err);
-    }) 
+        .then(function (resp) {
+            for (var i in resp.tracks.items) {
+                num = parseInt(i) + 1;
+                console.log("-------------------- Track: " + num + "----------------------------")
+                console.log("Artist: " + resp.tracks.items[i].artists[0].name);
+                console.log("Song: " + resp.tracks.items[i].name);
+                console.log("Album: " + resp.tracks.items[i].album.name);
+                console.log("Preview: "+resp.tracks.items[i].preview_url);
+
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
 
 }
 
