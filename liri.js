@@ -78,8 +78,12 @@ if (command === "spotify-this-song") {
 
 if (command === "movie-this"){
     var movie = process.argv[3];
-    var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
 
+    if (movie === undefined){
+        movie = "Mr. Nobody"
+    };
+
+    var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
     axios.get(queryUrl)
     .then(function(resp){
         console.log(resp.data);
