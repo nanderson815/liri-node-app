@@ -11,7 +11,7 @@ var keys = require("./keys");
 
 var spotify = new Spotify(keys.spotify);
 
-var omdb = keys.omdb;
+var omdb = keys.omdb.key;
 
 var bandsKey = keys.bands.key;
 
@@ -83,7 +83,7 @@ if (command === "movie-this") {
         movie = "Mr. Nobody"
     };
 
-    var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+    var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=" + omdb;
     axios.get(queryUrl)
         .then(function (resp) {
             console.log(resp.data.Title);
@@ -97,6 +97,6 @@ if (command === "movie-this") {
 
         });
 
-}
+};
 
 
