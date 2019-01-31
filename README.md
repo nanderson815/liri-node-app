@@ -1,5 +1,6 @@
 # liri-node-app
 
+run node liri.js followed by the following commands:
 
 # Commands
 ### concert-this
