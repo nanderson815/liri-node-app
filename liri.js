@@ -5,8 +5,6 @@ var Spotify = require('node-spotify-api');
 var keys = require("./keys");
 var fs = require('fs');
 
-
-
 // Keys
 var spotify = new Spotify(keys.spotify);
 var omdb = keys.omdb.key;
@@ -83,12 +81,10 @@ function movieThis(item) {
             console.log("Language: " + resp.data.Language);
             console.log("Plot: " + resp.data.Plot);
             console.log("Actors: " + resp.data.Actors);
-
         });
-
 };
 
-// Do what it says command
+// Do what it says command ---------------------------------------------------------------------------------------------
 function doWhatItSays() {
     fs.readFile("random.txt", "utf-8", function(err, data){
         if (err){
@@ -104,7 +100,7 @@ function doWhatItSays() {
     })
 }
 
-// Choose which function to run
+// Choose which function to run ---------------------------------------------------------------------------------------
 function runProgram(command, item){
     switch(command){
         case 'concert-this':
