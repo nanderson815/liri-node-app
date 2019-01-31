@@ -46,7 +46,7 @@ if (command === "concert-this") {
 
 // Spotify Command ----------------------------------------------------------------------------------------------------
 if (command === "spotify-this-song") {
-    var track = process.argv[3]
+    var track = process.argv[3];
 
     if (track === undefined) {
         track = "The Sign";
@@ -74,6 +74,17 @@ if (command === "spotify-this-song") {
 
 }
 
+// Movie Command
 
+if (command === "movie-this"){
+    var movie = process.argv[3];
+    var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+
+    axios.get(queryUrl)
+    .then(function(resp){
+        console.log(resp.data);
+    });
+
+}
 
 
