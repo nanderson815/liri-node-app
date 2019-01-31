@@ -13,7 +13,7 @@ run *spotif-this-song* and the name of a song in quotation marks to recieve a li
 "spotify-this-song 'Tubthumping'" returns the search results for the song.
 
 ### movie-this
-run *movie-this* and the name of a movie in quotation marks to get more info on a movie. For Exapmle:
+run *movie-this* and the name of a movie in quotation marks to get more info on a movie. For Example:
 
 "movie-this 'Inception'" will return more information on the movie.
 
