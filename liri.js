@@ -1,31 +1,22 @@
 require("dotenv").config();
-
 var moment = require('moment');
-// moment().format();
-
 var axios = require('axios');
-
 var Spotify = require('node-spotify-api');
-
 var keys = require("./keys");
+var http = require('http');
+var fs = require('fs');
 
+
+
+// Keys
 var spotify = new Spotify(keys.spotify);
-
 var omdb = keys.omdb.key;
-
 var bandsKey = keys.bands.key;
-
-// console.log(bandsKey);
-
-// console.log(keys.spotify);
-// console.log(omdb);
-
-var command = process.argv[2];
 
 
 // Bands in Town Command ----------------------------------------------------------------------------------------------
-if (command === "concert-this") {
-    var band = process.argv[3];
+function concertThis(item) {
+    var band = item;
 
     if (band != undefined) {
         var URL = "https://rest.bandsintown.com/artists/" + band + "/events?app_id=" + bandsKey;
@@ -45,8 +36,8 @@ if (command === "concert-this") {
 }
 
 // Spotify Command ----------------------------------------------------------------------------------------------------
-if (command === "spotify-this-song") {
-    var track = process.argv[3];
+function spotifyThis(item) {
+    var track = item;
 
     if (track === undefined) {
         track = "The Sign";
@@ -74,10 +65,9 @@ if (command === "spotify-this-song") {
 
 }
 
-// Movie Command
-
-if (command === "movie-this") {
-    var movie = process.argv[3];
+// Movie Command -------------------------------------------------------------------------------------------------------
+function movieThis(item) {
+    var movie = item;
 
     if (movie === undefined) {
         movie = "Mr. Nobody"
@@ -90,13 +80,56 @@ if (command === "movie-this") {
             console.log(resp.data.Year);
             console.log("IMDB Rating: " + resp.data.Ratings[0].Value);
             console.log("Rotten Tomatoes Rating: " + resp.data.Ratings[1].Value);
-            console.log("Country(ies) of Filming: "+resp.data.Country);
-            console.log("Language: "+resp.data.Language);
-            console.log("Plot: "+resp.data.Plot);
-            console.log("Actors: "+resp.data.Actors);
+            console.log("Country(ies) of Filming: " + resp.data.Country);
+            console.log("Language: " + resp.data.Language);
+            console.log("Plot: " + resp.data.Plot);
+            console.log("Actors: " + resp.data.Actors);
 
         });
 
 };
 
+// Do what it says command
+function doWhatItSays() {
+    fs.readFile("random.txt", "utf-8", function(err, data){
+        if (err){
+            console.log(err);
+        } else {
+            var arr = (data.split(","));
 
+            var command = arr[0];
+            var item = arr[1];
+
+            runProgram(command, item);
+        }
+    })
+}
+
+// Choose which function to run
+function runProgram(command, item){
+    switch(command){
+        case 'concert-this':
+            concertThis(item);
+            break;
+        
+        case 'spotify-this-song':
+            spotifyThis(item);
+            break;
+
+        case 'movie-this':
+            movieThis(item);
+            break;
+
+        case 'do-what-it-says':
+            doWhatItSays();
+            break;
+    }
+}
+
+
+
+
+var command = process.argv[2];
+var item = process.argv[3];
+
+runProgram(command, item);
