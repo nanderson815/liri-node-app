@@ -3,7 +3,6 @@ var moment = require('moment');
 var axios = require('axios');
 var Spotify = require('node-spotify-api');
 var keys = require("./keys");
-var http = require('http');
 var fs = require('fs');
 
 
