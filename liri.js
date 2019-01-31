@@ -76,18 +76,26 @@ if (command === "spotify-this-song") {
 
 // Movie Command
 
-if (command === "movie-this"){
+if (command === "movie-this") {
     var movie = process.argv[3];
 
-    if (movie === undefined){
+    if (movie === undefined) {
         movie = "Mr. Nobody"
     };
 
     var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
     axios.get(queryUrl)
-    .then(function(resp){
-        console.log(resp.data);
-    });
+        .then(function (resp) {
+            console.log(resp.data.Title);
+            console.log(resp.data.Year);
+            console.log("IMDB Rating: " + resp.data.Ratings[0].Value);
+            console.log("Rotten Tomatoes Rating: " + resp.data.Ratings[1].Value);
+            console.log("Country(ies) of Filming: "+resp.data.Country);
+            console.log("Language: "+resp.data.Language);
+            console.log("Plot: "+resp.data.Plot);
+            console.log("Actors: "+resp.data.Actors);
+
+        });
 
 }
 
